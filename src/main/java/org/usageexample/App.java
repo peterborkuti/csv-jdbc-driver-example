@@ -14,14 +14,8 @@ import java.sql.Statement;
 public class App 
 {
     public static void main( String[] args ) throws SQLException {
-        String resourceName = "test.csv";
-
-        ClassLoader classLoader = new App().getClass().getClassLoader();
-        String path = classLoader.getResource(resourceName).getPath();
-
-        String parent = Paths.get(path).getParent().toAbsolutePath().toString();
         try (
-        Connection conn = DriverManager.getConnection("jdbc:csv:" + parent);
+        Connection conn = DriverManager.getConnection("jdbc:csv:/home/peter/tmp");
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM test.csv")
         ){
